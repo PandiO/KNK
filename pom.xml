@@ -1,0 +1,85 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.knightsandkings</groupId>
+  <artifactId>KNK</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>KNK</name>
+  <description>Main plugin of the Minecraft-game Knigths and Kings</description>
+  
+  	<repositories>
+	    <!-- This adds the Spigot Maven repository to the build -->
+	    <repository>
+	        <id>spigot-repo</id>
+	        <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+	    </repository>
+	</repositories>
+	<dependencies>
+	    <!--This adds the Spigot API artifact to the build -->
+	    <dependency>
+	           <groupId>org.spigotmc</groupId>
+	           <artifactId>spigot-api</artifactId>
+	           <version>1.16.3-R0.1-SNAPSHOT</version>
+	           <scope>provided</scope>
+	    </dependency>
+	</dependencies>
+	
+	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<resources>
+			<resource>
+				<targetPath>.</targetPath>
+				<filtering>true</filtering>
+				<directory>${basedir}/src/main/resources/</directory>
+				<includes>
+					<include>plugin.yml</include>
+				</includes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+       			<groupId>org.apache.maven.plugins</groupId>
+       			<artifactId>maven-resources-plugin</artifactId>
+       			<version>3.2.0</version>
+       			<executions>
+         			<execution>
+           				<id>copy-files-on-build</id>
+           				<phase>package</phase>
+           				<goals>
+             				<goal>copy-resources</goal>
+           				</goals>
+           				<configuration>
+             				<outputDirectory>/Users/pandi/Documents/Vrije tijd/USB/mc_shit/KNK_Map_1.16/plugins</outputDirectory>
+             				<resources>
+               					<resource>
+                 					<directory>${basedir}/target</directory>
+                 					<include>${project.build.finalName}.jar</include>
+                 					<filtering>false</filtering>
+               					</resource>
+             				</resources>
+           				</configuration>
+         			</execution>
+       			</executions>
+     		</plugin>
+     		<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.2</version>
+            </plugin>
+     		<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <compilerArgs>
+                        <arg>-parameters</arg> <!-- used for ACF syntax stuff -->
+                    </compilerArgs>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <excludes>
+                    </excludes>
+                </configuration>
+            </plugin>
+     	</plugins>
+	</build>
+</project>

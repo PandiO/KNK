@@ -1,0 +1,5 @@
+main: net.knightsandkings.KNK
+name: ${project.name}
+version: ${project.version}
+author: __pandi__
+description: ${project.description}
